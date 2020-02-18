@@ -1,42 +1,41 @@
-describe('Swap', function() {
-  it('takes two number inputs and returns them in numerical order', function() {
-    expect(swap(8, 2)).toEqual([2, 8]);
-    expect(swap(2, 9)).toEqual([2, 9]);
-    expect(swap(3, 3)).toEqual('you should not have two of the same number');
-  });
-});
+describe("bubbleSort", function() {
 
-describe('Bubble Sort', function() {
-  beforeEach(function() {
-    spyOn(window, 'swap').and.callThrough();
-  });
-  it('handles an empty array', function() {
+  beforeAll(function() {
+    spyOn(window, 'swap').and.callThrough()
+  })
+
+  it('calls swap more than once', function() {
+    window.bubbleSort([4, 9, 46, 2])
+    expect(window.swap.calls.count()).toEqual(3)
+  })
+
+  it("handles an empty array", function() {
     expect(bubbleSort([])).toEqual([]);
-    expect(window.swap.calls.count()).toEqual(0);
   });
-  it('handles a single item in an array', function() {
-    expect(bubbleSort([4])).toEqual([4]);
-    expect(window.swap.calls.count()).toEqual(0);
+
+  it("handles an array with one element", function() {
+    expect(bubbleSort([3])).toEqual([3]);
   });
-  it('handles an array with multiple items', function() {
-    expect(bubbleSort([5, 8, 2, 9, 6])).toEqual([2, 5, 6, 8, 9]);
-    expect(window.swap.calls.count()).toEqual(9);
-    // or might be 10
-  });
-  it('handles a longer array with multiple items', function() {
-    expect(bubbleSort([33, 99, 50, 1, 15, 72, 98, 45, 4, 68])).toEqual([
-      1,
-      4,
-      15,
-      33,
-      45,
-      50,
-      68,
-      72,
-      98,
-      99,
+
+  it("handles an array with many elements", function() {
+    expect(bubbleSort([4, 9, 46, 2])).toEqual([2, 4, 9, 46]);
+    expect(bubbleSort([55, 32, 11, 5, 5, 3, 2])).toEqual([
+      2,
+      3,
+      5,
+      5,
+      11,
+      32,
+      55
     ]);
-    expect(window.swap.calls.count()).toEqual(44);
-    // or might be 45
+    expect(bubbleSort([719, 660, 680, 637, 394, 186, 183])).toEqual([
+      183,
+      186,
+      394,
+      637,
+      660,
+      680,
+      719
+    ]);
   });
 });
