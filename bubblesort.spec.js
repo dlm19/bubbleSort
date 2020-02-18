@@ -1,4 +1,4 @@
-describe("Bubble Sort", function() {
+describe("bubbleSort", function() {
 
   beforeAll(function() {
     spyOn(window, 'swap').and.callThrough()
